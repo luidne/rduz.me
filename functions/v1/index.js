@@ -13,18 +13,40 @@ api.use("/about", (req, res) => {
 
 api.use("/do/:url", (req, res) => {
   const url = req.params.url;
-  const idGenerated = nanoid(10);
+  const code = nanoid(10);
 
-  db.collection("urls").doc(idGenerated).set({
-    id: idGenerated,
+  db.collection("urls").doc(code).set({
+    code: code,
     url: url,
     date: admin.firestore.FieldValue.serverTimestamp(),
   }).then(() => {
-    console.log(`URL reduzida: https://hostname/${idGenerated}`);
-    res.send(`URL reduzida: https://hostname/${idGenerated}`);
+    const urlReduced = `https://hostname/${code}`;
+
+    console.log(`URL reduzido: ${urlReduced}`);
+    res.send(`URL reduzido: ${urlReduced}`);
   }).catch((error) => {
-    console.log(`Erro ao reduzir URL = ${url}`);
-    res.status(500).send(error);
+    console.log(error);
+    res.status(500).send(`Erro ao reduzir URL = ${url}`);
+  });
+});
+
+api.use("/:code", (req, res) => {
+  const code = req.params.code;
+
+  db.collection("urls").doc(code).get().then((doc) => {
+    if (doc.exists) {
+      const urlFull = doc.data().url;
+
+      console.log(`URL encontrado: ${urlFull}`);
+      res.send(`URL encontrado: <a href="${urlFull}">${urlFull}</a>`);
+      // res.redirect(urlReduced);
+    } else {
+      console.log(`URL ${code} não encontrado.`);
+      res.status(404).send("URL não encontrado.");
+    }
+  }).catch((error) => {
+    console.log(error);
+    res.status(500).send(`Erro ao recuperar código = ${code}`);
   });
 });
 
