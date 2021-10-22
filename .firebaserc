@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "rduzme-197c9"
+  },
+  "targets": {
+    "rduzme-197c9": {
+      "hosting": {
+        "site": [
+          "rduzme-197c9"
+        ],
+        "api": [
+          "rduzme-api"
+        ]
+      }
+    }
   }
 }
