@@ -24,18 +24,17 @@ api.post("/do", (req, res) => {
     code: code,
     url: url,
     date: admin.firestore.FieldValue.serverTimestamp(),
+    visits: 0,
   }).then(() => {
-    const urlReduced = `https://rduz.me/${code}`;
-
-    console.log(`URL reduzido: ${urlReduced}`);
+    console.log(`URL reduzido: ${code}`);
     res.send({
-      "urlReduced": urlReduced,
+      urlCode: code,
     });
   }).catch((error) => {
     console.log(error);
     res.status(500).send({
-      "msg": "Erro ao reduzir URL",
-      "url": url,
+      message: "Erro ao reduzir URL",
+      url: url,
     });
   });
 });
@@ -46,17 +45,26 @@ api.use("/:code", (req, res) => {
   db.collection("urls").doc(code).get().then((doc) => {
     if (doc.exists) {
       const urlFull = doc.data().url;
-
       console.log(`URL encontrado: ${urlFull}`);
-      // res.send(`URL encontrado: <a href="${urlFull}">${urlFull}</a>`);
+
+      doc.ref.update({
+        visits: doc.data().visits + 1,
+      });
+
       res.redirect(urlFull);
     } else {
       console.log(`URL ${code} não encontrado.`);
-      res.status(404).send("URL não encontrado.");
+      res.status(404).send({
+        urlCode: code,
+        message: "URL não encontrado.",
+      });
     }
   }).catch((error) => {
     console.log(error);
-    res.status(500).send(`Erro ao recuperar código = ${code}`);
+    res.status(500).send({
+      urlCode: code,
+      message: "Erro ao recuperar código de URL",
+    });
   });
 });
 
