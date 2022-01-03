@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { Row, Col, Alert, Result, notification } from "antd";
+import Link from "antd/lib/typography/Link";
 import { withTranslation } from "react-i18next";
+import { Fade, Zoom } from "react-awesome-reveal";
 import { SvgIcon } from "../../../common/SvgIcon";
 import { Button } from "../../../common/Button";
 import { ButtonSmall } from "../../../common/ButtonSmall";
 import { ContentBlockProps } from "../types";
-import { Fade, Zoom } from "react-awesome-reveal";
 import {
   RightBlockContainer,
   Content,
@@ -16,8 +18,7 @@ import { useForm } from "../../../common/utils/useForm";
 import Input from "../../../common/Input";
 import validate from "../../../common/utils/validationRules";
 import { ValidationTypeProps } from "../../ContactForm/types";
-import Link from "antd/lib/typography/Link";
-import { useState } from "react";
+import SpinCustom from "../../../common/SpinCustom";
 
 const RightBlock = ({
   title,
@@ -29,7 +30,7 @@ const RightBlock = ({
 }: ContentBlockProps) => {
   const [isCopied, setIsCopied] = useState(false);
   
-  const { values, errors, urlReduzida, handleChange, handleSubmit } = useForm(
+  const { values, errors, responseApi, handleChange, handleSubmit, isLoading } = useForm(
     validate
   ) as any;
 
@@ -52,7 +53,7 @@ const RightBlock = ({
 
   const handleCopyClick = () => {
     // Asynchronously call copyTextToClipboard
-    copyTextToClipboard(urlReduzida.urlReduced)
+    copyTextToClipboard(responseApi.urlCode)
       .then(() => {
         // If successful, update the isCopied state value
         notification["success"]({
@@ -78,7 +79,9 @@ const RightBlock = ({
             <ContentWrapper>
               <h6>{t(title)}</h6>
               {/* <Content>{t(content)}</Content> */}
-              <FormGroup autoComplete="off" onSubmit={handleSubmit}>
+              <FormGroup 
+                  autoComplete="off"
+                  onSubmit={handleSubmit}>
                 <Col span={24}>
                   <Input
                     type="url"
@@ -97,21 +100,23 @@ const RightBlock = ({
             </ContentWrapper>
           </Col>
           <Col lg={11} md={11} sm={12} xs={24}>
-            {urlReduzida.urlReduced ?
-            <>
-              <Result
-                status="success"
-                title={t("Reduzido com sucesso")}
-                extra={[
-                  <Link href={urlReduzida.urlReduced || "#"}>{urlReduzida.urlReduced || ""}</Link>,
-                  <span></span>,
-                  <ButtonSmall onClick={handleCopyClick}>{t("Copy")}</ButtonSmall>
-                ]}
-              />
-            </>
-            :
-            <SvgIcon src={icon} width="100%" height="100%" />
-            }
+            <SpinCustom spinning={isLoading}>
+              {responseApi.urlCode ?
+              <>
+                <Result
+                  status="success"
+                  title={t("Reduzido com sucesso")}
+                  extra={[
+                    <Link target={"_blank"} href={`https://rduz.me/${responseApi.urlCode}` || "#"}>{`https://rduz.me/${responseApi.urlCode}` || ""}</Link>,
+                    <span></span>,
+                    <ButtonSmall onClick={handleCopyClick}>{t("Copy")}</ButtonSmall>
+                  ]}
+                />
+              </>
+              :
+              <SvgIcon src={icon} width="100%" height="100%" />
+              }
+            </SpinCustom>
           </Col>
         </Row>
       </Fade>
