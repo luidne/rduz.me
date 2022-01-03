@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const {nanoid} = require("nanoid");
 const admin = require("firebase-admin");
 
@@ -7,12 +8,16 @@ const api = express();
 admin.initializeApp();
 const db = admin.firestore();
 
+api.use(cors());
+api.use(express.json());
+api.use(express.urlencoded({extended: true}));
+
 api.use("/about", (req, res) => {
   res.send("API V1");
 });
 
-api.use("/do/:url", (req, res) => {
-  const url = req.params.url;
+api.post("/do", (req, res) => {
+  const url = req.body.url;
   const code = nanoid(10);
 
   db.collection("urls").doc(code).set({
@@ -20,13 +25,18 @@ api.use("/do/:url", (req, res) => {
     url: url,
     date: admin.firestore.FieldValue.serverTimestamp(),
   }).then(() => {
-    const urlReduced = `https://hostname/${code}`;
+    const urlReduced = `https://rduz.me/${code}`;
 
     console.log(`URL reduzido: ${urlReduced}`);
-    res.send(`URL reduzido: ${urlReduced}`);
+    res.send({
+      "urlReduced": urlReduced,
+    });
   }).catch((error) => {
     console.log(error);
-    res.status(500).send(`Erro ao reduzir URL = ${url}`);
+    res.status(500).send({
+      "msg": "Erro ao reduzir URL",
+      "url": url,
+    });
   });
 });
 
@@ -38,8 +48,8 @@ api.use("/:code", (req, res) => {
       const urlFull = doc.data().url;
 
       console.log(`URL encontrado: ${urlFull}`);
-      res.send(`URL encontrado: <a href="${urlFull}">${urlFull}</a>`);
-      // res.redirect(urlReduced);
+      // res.send(`URL encontrado: <a href="${urlFull}">${urlFull}</a>`);
+      res.redirect(urlFull);
     } else {
       console.log(`URL ${code} não encontrado.`);
       res.status(404).send("URL não encontrado.");

@@ -11,17 +11,27 @@
   "hosting": [ 
     {
       "target": "site",
-      "public": "site/public",
+      "public": "site/build",
       "rewrites": [
         {
-          "source": "/**",
+          "source": "/",
           "destination": "/index.html"
+        },
+        {
+          "source": "/**",
+          "function": "apiV1"
         }
       ]
     },
+    
     {
       "target": "api",
-      "public": "api/public"
+      "rewrites": [
+        {
+          "source": "/**",
+          "function": "apiV1"
+        }
+      ]
     }
   ],
   "emulators": {
