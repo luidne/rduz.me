@@ -15,15 +15,12 @@ export const useForm = (validate: any) => {
 
     setResponseApi({});
     setErrors(_errors);
-    
-    const url = "http://localhost:5001/rduzme-197c9/us-central1/apiV1/do";
-    // const url = "https://rduzme-api.firebaseapp.com/do";
-    console.log(`Erros de validação`, _errors)
+
     if (Object.keys(values).length === 1 && "".match(_errors.url)) {
       setIsLoading(true);
 
       axios
-        .post(url, {
+        .post(process.env.REACT_APP_URL_API as string, {
           ...values,
         })
         .then((res) => {
@@ -37,7 +34,7 @@ export const useForm = (validate: any) => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && shouldSubmit) {
-      console.log("useEffect()");
+      // console.log("useEffect()");
       setValues("");
     }
   }, [errors, shouldSubmit]);

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Row, Col, Alert, Result, notification } from "antd";
+import { Row, Col, Result, notification } from "antd";
 import Link from "antd/lib/typography/Link";
 import { withTranslation } from "react-i18next";
 import { Fade, Zoom } from "react-awesome-reveal";
@@ -9,11 +8,9 @@ import { ButtonSmall } from "../../../common/ButtonSmall";
 import { ContentBlockProps } from "../types";
 import {
   RightBlockContainer,
-  Content,
   ContentWrapper,
-  ButtonWrapper,
 } from "./styles";
-import { ButtonContainer, FormGroup, Span } from "../../ContactForm/styles";
+import { FormGroup, Span } from "../../ContactForm/styles";
 import { useForm } from "../../../common/utils/useForm";
 import Input from "../../../common/Input";
 import validate from "../../../common/utils/validationRules";
@@ -28,8 +25,7 @@ const RightBlock = ({
   t,
   id,
 }: ContentBlockProps) => {
-  const [isCopied, setIsCopied] = useState(false);
-  
+
   const { values, errors, responseApi, handleChange, handleSubmit, isLoading } = useForm(
     validate
   ) as any;
@@ -52,19 +48,13 @@ const RightBlock = ({
   }
 
   const handleCopyClick = () => {
-    // Asynchronously call copyTextToClipboard
     copyTextToClipboard(responseApi.urlCode)
       .then(() => {
-        // If successful, update the isCopied state value
         notification["success"]({
           message: t("Sucesso"),
           description: t("Seu link foi copiado"),
           duration: 10,
         });
-        setIsCopied(true);
-        setTimeout(() => {
-          setIsCopied(false);
-        }, 1500);
       })
       .catch((err) => {
         console.log(err);
@@ -107,9 +97,11 @@ const RightBlock = ({
                   status="success"
                   title={t("Reduzido com sucesso")}
                   extra={[
-                    <Link target={"_blank"} href={`https://rduz.me/${responseApi.urlCode}` || "#"}>{`https://rduz.me/${responseApi.urlCode}` || ""}</Link>,
-                    <span></span>,
-                    <ButtonSmall onClick={handleCopyClick}>{t("Copy")}</ButtonSmall>
+                    <Link key={1} target={"_blank"} href={`${process.env.REACT_APP_DOMAIN}/${responseApi.urlCode}` || "#"}>
+                      {`${process.env.REACT_APP_DOMAIN}/${responseApi.urlCode}` || ""}
+                    </Link>,
+                    <span key={2} />,
+                    <ButtonSmall key={3} onClick={handleCopyClick}>{t("Copy")}</ButtonSmall>
                   ]}
                 />
               </>
