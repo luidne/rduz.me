@@ -4,11 +4,14 @@ const {nanoid} = require("nanoid");
 const admin = require("firebase-admin");
 
 const api = express();
+const corsOptions = {
+  origin: "https://rduz.me",
+};
 
 admin.initializeApp();
 const db = admin.firestore();
 
-api.use(cors());
+api.use(cors(corsOptions));
 api.use(express.json());
 api.use(express.urlencoded({extended: true}));
 
