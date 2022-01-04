@@ -42,6 +42,28 @@ api.post("/do", (req, res) => {
   });
 });
 
+api.get("/:code/details", (req, res) => {
+  const code = req.params.code;
+
+  db.collection("urls").doc(code).get().then((doc) => {
+    if (doc.exists) {
+      res.send(doc.data());
+    } else {
+      console.log(`URL ${code} não encontrado.`);
+      res.status(404).send({
+        urlCode: code,
+        message: "URL não encontrado.",
+      });
+    }
+  }).catch((error) => {
+    console.log(error);
+    res.status(500).send({
+      urlCode: code,
+      message: "Erro ao recuperar código de URL",
+    });
+  });
+});
+
 api.use("/:code", (req, res) => {
   const code = req.params.code;
 
