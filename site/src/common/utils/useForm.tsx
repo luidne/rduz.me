@@ -1,38 +1,33 @@
 import { useState, useEffect } from "react";
-import { notification } from "antd";
 import axios from "axios";
+import { validateProps } from "../../common/types";
 
 export const useForm = (validate: any) => {
   const [values, setValues] = useState({});
   const [responseApi, setResponseApi] = useState({});
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({} as validateProps);
   const [shouldSubmit, setShouldSubmit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const openNotificationWithIcon = () => {
-    notification["success"]({
-      message: "Success",
-      description: "Your message has been sent!",
-    });
-  };
-
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const _errors = validate(values);
 
     setResponseApi({});
-    setErrors(validate(values));
-    // Your url for API
+    setErrors(_errors);
+    
     const url = "http://localhost:5001/rduzme-197c9/us-central1/apiV1/do";
     // const url = "https://rduzme-api.firebaseapp.com/do";
-    if (Object.keys(values).length === 1) {
+    console.log(`Erros de validação`, _errors)
+    if (Object.keys(values).length === 1 && "".match(_errors.url)) {
       setIsLoading(true);
-      
+
       axios
         .post(url, {
           ...values,
         })
         .then((res) => {
-          console.log(JSON.stringify(res.data));
+          // console.log(JSON.stringify(res.data));
           setResponseApi(res.data);         
           setShouldSubmit(true);
           setIsLoading(false);
@@ -43,8 +38,7 @@ export const useForm = (validate: any) => {
   useEffect(() => {
     if (Object.keys(errors).length === 0 && shouldSubmit) {
       console.log("useEffect()");
-      // setValues("");
-      //openNotificationWithIcon();
+      setValues("");
     }
   }, [errors, shouldSubmit]);
 
