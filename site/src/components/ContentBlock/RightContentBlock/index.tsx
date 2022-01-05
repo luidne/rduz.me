@@ -48,7 +48,7 @@ const RightBlock = ({
   }
 
   const handleCopyClick = () => {
-    copyTextToClipboard(responseApi.urlCode)
+    copyTextToClipboard(responseApi.url)
       .then(() => {
         notification["success"]({
           message: t("Sucesso"),
@@ -91,14 +91,14 @@ const RightBlock = ({
           </Col>
           <Col lg={11} md={11} sm={12} xs={24}>
             <SpinCustom spinning={isLoading}>
-              {responseApi.urlCode ?
+              {responseApi.url ?
               <>
                 <Result
                   status="success"
                   title={t("Reduzido com sucesso")}
                   extra={[
-                    <Link key={1} target={"_blank"} href={`${process.env.REACT_APP_DOMAIN}/${responseApi.urlCode}` || "#"}>
-                      {`${process.env.REACT_APP_DOMAIN}/${responseApi.urlCode}` || ""}
+                    <Link key={1} target={"_blank"} href={responseApi.url || "#"}>
+                      {responseApi.url || ""}
                     </Link>,
                     <span key={2} />,
                     <ButtonSmall key={3} onClick={handleCopyClick}>{t("Copy")}</ButtonSmall>

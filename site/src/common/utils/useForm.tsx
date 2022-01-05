@@ -25,7 +25,9 @@ export const useForm = (validate: any) => {
         })
         .then((res) => {
           // console.log(JSON.stringify(res.data));
-          setResponseApi(res.data);         
+          setResponseApi({
+            url: `${process.env.REACT_APP_DOMAIN}/${res.data.urlCode}`
+          });         
           setShouldSubmit(true);
           setIsLoading(false);
         });
