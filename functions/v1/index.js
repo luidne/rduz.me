@@ -79,10 +79,7 @@ api.use("/:code", (req, res) => {
       res.redirect(urlFull);
     } else {
       console.log(`URL ${code} não encontrado.`);
-      res.status(404).send({
-        urlCode: code,
-        message: "URL não encontrado.",
-      });
+      res.redirect("/Vish");
     }
   }).catch((error) => {
     console.log(error);
