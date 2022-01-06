@@ -10,7 +10,7 @@ const Home = () => {
     <Container>
       <ScrollToTop />
       <ContentBlock
-        type="right"
+        type="principal"
         title={IntroContent.title}
         content={IntroContent.text}
         button={IntroContent.button}
