@@ -9,18 +9,17 @@ import { ContentBlockProps } from "../types";
 import {
   RightBlockContainer,
   ContentWrapper,
+  Span,
+  FormGroup,
 } from "./styles";
-import { FormGroup, Span } from "../../ContactForm/styles";
-import { useForm } from "../../../common/utils/useForm";
+import { useForm } from "./useForm";
 import Input from "../../../common/Input";
 import validate from "../../../common/utils/validationRules";
-import { ValidationTypeProps } from "../../ContactForm/types";
 import SpinCustom from "../../../common/SpinCustom";
+import { ValidationTypeProps } from "../../../common/types";
 
 const RightBlock = ({
   title,
-  content,
-  button,
   icon,
   t,
   id,
@@ -68,7 +67,6 @@ const RightBlock = ({
           <Col lg={11} md={11} sm={11} xs={24}>
             <ContentWrapper>
               <h6>{t(title)}</h6>
-              {/* <Content>{t(content)}</Content> */}
               <FormGroup 
                   autoComplete="off"
                   onSubmit={handleSubmit}>
@@ -80,33 +78,31 @@ const RightBlock = ({
                     value={values.url || ""}
                     onChange={handleChange}
                   />
-                  {/* <ButtonContainer> */}
-                    <Button width="490px" name="submit">{t("Reduzir")}</Button>
-                  {/* </ButtonContainer> */}
+                  <Button width="490px" name="submit">{t("Reduzir")}</Button>
                   <ValidationType type="url" />
-                </Col>
-                
+                </Col>                
               </FormGroup>
             </ContentWrapper>
           </Col>
           <Col lg={11} md={11} sm={12} xs={24}>
             <SpinCustom spinning={isLoading}>
-              {responseApi.url ?
-              <>
-                <Result
-                  status="success"
-                  title={t("Reduzido com sucesso")}
-                  extra={[
-                    <Link key={1} target={"_blank"} href={responseApi.url || "#"}>
-                      {responseApi.url || ""}
-                    </Link>,
-                    <span key={2} />,
-                    <ButtonSmall key={3} onClick={handleCopyClick}>{t("Copy")}</ButtonSmall>
-                  ]}
-                />
-              </>
-              :
-              <SvgIcon src={icon} width="100%" height="100%" />
+              {
+                responseApi.url ?
+                <>
+                  <Result
+                    status="success"
+                    title={t("Reduzido com sucesso")}
+                    extra={[
+                      <Link key={1} target={"_blank"} href={responseApi.url || "#"}>
+                        {responseApi.url || ""}
+                      </Link>,
+                      <span key={2} />,
+                      <ButtonSmall key={3} onClick={handleCopyClick}>{t("Copy")}</ButtonSmall>
+                    ]}
+                  />
+                </>
+                :
+                <SvgIcon src={icon} width="100%" height="100%" />
               }
             </SpinCustom>
           </Col>

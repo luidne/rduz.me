@@ -1,18 +1,16 @@
 import { lazy } from "react";
+import VisitsBlock from "../../components/VisitsBlock";
 
 const Container = lazy(() => import("../../common/Container"));
 const ScrollToTop = lazy(() => import("../../common/ScrollToTop"));
-const ContentBlock = lazy(() => import("../../components/ContentBlock"));
 
 const Home = () => {
+
   return (
     <Container>
       <ScrollToTop />
-      <ContentBlock
-        type="principal"
-        title={"Reduza seu URL agora!"}
-        icon="developer.svg"
-        id="intro"
+      <VisitsBlock
+        title={`Seu link tem...`}
       />
     </Container>
   );

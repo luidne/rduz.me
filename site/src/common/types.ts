@@ -34,3 +34,7 @@ export interface InputProps {
 export interface validateProps {
   url: string;
 }
+
+export interface ValidationTypeProps {
+  type: any;
+}

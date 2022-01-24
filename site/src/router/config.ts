@@ -5,6 +5,11 @@ const routes = [
     component: "Home",
   },
   {
+    path: ["/visits"],
+    exact: true,
+    component: "Visits",
+  },
+  {
     component: "NotFound",
   },
 ];
