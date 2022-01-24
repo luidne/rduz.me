@@ -29,6 +29,12 @@ Feita a compilação o React App agora ficará integrado ao Firebase Hosting e t
  - Produção: ```# firebase deploy```
 
 
->> Criar **.env** com as a seguintes variáveis:
->> ```REACT_APP_DOMAIN=https://...```
->> ```REACT_APP_URL_API=$REACT_APP_DOMAIN/do```
+> Criar **.env** com as a seguintes variáveis:
+> ```REACT_APP_DOMAIN=https://...```
+> ```REACT_APP_URL_API_DO=https://.../do```
+> ```REACT_APP_URL_API_VISITS=https://.../visits```
+>
+>```REACT_APP_FIREBASE_API_KEY=...```
+>```REACT_APP_FIREBASE_PROJECT_ID=...```
+>```REACT_APP_FIREBASE_APP_IP=...```
+>```REACT_APP_FIREBASE_MEASUREMENT_ID=...```
