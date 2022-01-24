@@ -42,7 +42,7 @@ api.post("/do", (req, res) => {
   });
 });
 
-api.get("/:code/details", (req, res) => {
+api.get("/details/:code", (req, res) => {
   const code = req.params.code;
 
   db.collection("urls").doc(code).get().then((doc) => {
@@ -79,7 +79,7 @@ api.use("/:code", (req, res) => {
       res.redirect(urlFull);
     } else {
       console.log(`URL ${code} não encontrado.`);
-      res.redirect("/Vish");
+      res.redirect("/notfound");
     }
   }).catch((error) => {
     console.log(error);
