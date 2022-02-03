@@ -26,6 +26,7 @@
   "Email" : "Email",
   "Your Email": "Your Email",
   "Cole aqui": "Paste here...",
+  "Cole aqui link rduz.me": "Paste here rduz.me URL",
   "Reduzir": "Short",
   "Copy": "Copy",
   "Reduzido com sucesso": "URL shortened successfull!",
@@ -33,5 +34,9 @@
   "Sucesso": "Success",
   "Seu link foi copiado": "You link was copied and already to paste (Ctrl + V)",
   "URL não encontrado.": "URL not found.",
-  "Vish!": "Vish!"
+  "Vish!": "Vish!",
+  "Contador de Visitas": "Visits Counter",
+  "Seu link tem...": "Your link has...",
+  "Verificar": "Verify",
+  "Visitas": "Visits"
 }

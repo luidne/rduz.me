@@ -114,6 +114,7 @@ export const Language = styled("h4")`
 `;
 
 export const LanguageSwitch = styled("div")<any>`
+  padding: 0 10px;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 
@@ -128,6 +129,5 @@ export const LanguageSwitch = styled("div")<any>`
 
 export const LanguageSwitchContainer = styled("div")`
   display: flex;
-  justify-content: space-between;
-  width: 85px;
+  justify-content: space-evenly;
 `;

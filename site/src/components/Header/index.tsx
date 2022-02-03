@@ -14,7 +14,11 @@ import {
   Outline,
   LanguageSwitch,
   LanguageSwitchContainer,
+  CustomNavLinkSmall,
+  Span,
+  CustomNavLink
 } from "./styles";
+import { Button } from "../../common/Button";
 
 const Header = ({ t }: any) => {
   const [visible, setVisibility] = useState(false);
@@ -34,24 +38,31 @@ const Header = ({ t }: any) => {
   const MenuItem = () => {
     return (
       <>
-        <LanguageSwitchContainer>
-        <LanguageSwitch onClick={() => handleChange("pt")}>
-            <SvgIcon
-              src="brazil.svg"
-              aria-label="homepage"
-              width="30px"
-              height="30px"
-            />
-          </LanguageSwitch>
-          <LanguageSwitch onClick={() => handleChange("en")}>
-            <SvgIcon
-              src="united-states.svg"
-              aria-label="homepage"
-              width="30px"
-              height="30px"
-            />
-          </LanguageSwitch>
-        </LanguageSwitchContainer>
+        <CustomNavLink onClick={() => window.location.href = '/visits'}>
+          <Span>
+            <Button>{t('Contador de Visitas')}</Button>
+          </Span>
+        </CustomNavLink>
+        <CustomNavLinkSmall>
+          <LanguageSwitchContainer>    
+            <LanguageSwitch onClick={() => handleChange("pt")}>
+              <SvgIcon
+                src="brazil.svg"
+                aria-label="homepage"
+                width="30px"
+                height="30px"
+              />
+            </LanguageSwitch>
+            <LanguageSwitch onClick={() => handleChange("en")}>
+              <SvgIcon
+                src="united-states.svg"
+                aria-label="homepage"
+                width="30px"
+                height="30px"
+              />
+            </LanguageSwitch>
+          </LanguageSwitchContainer>
+          </CustomNavLinkSmall>
       </>
     );
   };
@@ -62,7 +73,7 @@ const Header = ({ t }: any) => {
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
             {/* <SvgIcon src="logo.svg" width="101px" height="64px" /> */}
-            <h3>Rduz.me</h3>
+            <h3>Rduz.</h3><h6>me</h6>
           </LogoContainer>
           <NotHidden>
             <MenuItem />

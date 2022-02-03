@@ -45,11 +45,11 @@ const MiddleBlock = ({ title, t }: MiddleBlockProps) => {
                   <Input 
                     type="url"
                     name="url"
-                    placeholder={t("Cole aqui")}
+                    placeholder={t("Cole aqui link rduz.me")}
                     value={values.url || ""}
                     onChange={handleChange}
                   />
-                  <Button width="490px" name="submit">{t("verificar")}</Button>
+                  <Button width="490px" name="submit">{t("Verificar")}</Button>
                   <ValidationType type="url" />
                 </Col>
               </FormGroup>
@@ -63,7 +63,7 @@ const MiddleBlock = ({ title, t }: MiddleBlockProps) => {
                     icon={<></>}
                       title={""}
                       extra={[
-                        <h2>{responseApi.visits} {t("visitas")}</h2>
+                        <h2>{responseApi.visits} {t("Visitas")}</h2>
                       ]}
                     />
                   :

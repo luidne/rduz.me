@@ -2,11 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const {nanoid} = require("nanoid");
 const admin = require("firebase-admin");
+const functions = require("firebase-functions");
 
 const api = express();
-const corsOptions = {
-  origin: "https://rduz.me",
-};
+const corsOptions = functions.config().cors.options;
 
 admin.initializeApp();
 const db = admin.firestore();

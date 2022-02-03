@@ -26,11 +26,16 @@
   "Email" : "E-mail",
   "Your Email": "Seu e-mail",
   "Cole aqui": "Cole aqui...",
+  "Cole aqui link rduz.me": "Cole aqui um URL rduz.me",
   "Reduzir": "Reduzir",
   "Copy": "Copiar",
   "Reduzido com sucesso": "URL reduzido com sucesso!",
   "Reduza seu URL agora!": "Reduza seu URL agora!",
   "Seu link foi copiado": "Seu link foi copiado e está pronta para colar (Ctrl + V)",
   "URL não encontrado.": "URL não encontrado.",
-  "Vish!": "Vish!"
+  "Vish!": "Vish!",
+  "Contador de Visitas": "Contador de Visitas",
+  "Seu link tem...": "Seu link tem...",
+  "Verificar": "Verificar",
+  "Visitas": "Visitas"
 }
