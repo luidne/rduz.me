@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://rduz.me/</loc>
+    <lastmod>2025-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://rduz.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://rduz.me/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rduz.me/" />
+  </url>
+
+  <!-- Visits Counter Page -->
+  <url>
+    <loc>https://rduz.me/visits</loc>
+    <lastmod>2025-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://rduz.me/visits" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://rduz.me/visits?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rduz.me/visits" />
+  </url>
+
+</urlset>
