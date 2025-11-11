@@ -59,8 +59,12 @@ export const Styles = createGlobalStyle`
     h6 {
         font-family: 'Motiva Sans Bold', serif;
         color: #18216d;
-        font-size: 56px;
         line-height: 1.18;
+    }
+
+    h1 {
+        font-size: 56px;
+        font-weight: 600;
 
         @media only screen and (max-width: 890px) {
           font-size: 47px;
@@ -71,14 +75,70 @@ export const Styles = createGlobalStyle`
         }
     }
 
+    h2 {
+        font-size: 48px;
+
+        @media only screen and (max-width: 890px) {
+          font-size: 40px;
+        }
+      
+        @media only screen and (max-width: 414px) {
+          font-size: 28px;
+        }
+    }
+
+    h3 {
+        font-size: 40px;
+
+        @media only screen and (max-width: 890px) {
+          font-size: 34px;
+        }
+      
+        @media only screen and (max-width: 414px) {
+          font-size: 24px;
+        }
+    }
+
+    h4 {
+        font-size: 32px;
+
+        @media only screen and (max-width: 890px) {
+          font-size: 28px;
+        }
+      
+        @media only screen and (max-width: 414px) {
+          font-size: 22px;
+        }
+    }
+
+    h5 {
+        font-size: 24px;
+
+        @media only screen and (max-width: 890px) {
+          font-size: 22px;
+        }
+      
+        @media only screen and (max-width: 414px) {
+          font-size: 20px;
+        }
+    }
+
+    h6 {
+        font-size: 20px;
+
+        @media only screen and (max-width: 890px) {
+          font-size: 18px;
+        }
+      
+        @media only screen and (max-width: 414px) {
+          font-size: 16px;
+        }
+    }
+
     p {
         color: #18216d;
         font-size: 21px;        
         line-height: 1.41;
-    }
-
-    h1 {
-        font-weight: 600;
     }
 
     a {

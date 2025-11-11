@@ -62,52 +62,50 @@ const RightBlock = ({
 
   return (
     <RightBlockContainer>
-      <Fade direction="right">
-        <Row justify="space-between" align="middle" id={id}>
-          <Col lg={11} md={11} sm={11} xs={24}>
-            <ContentWrapper>
-              <h6>{t(title)}</h6>
-              <FormGroup 
-                  autoComplete="off"
-                  onSubmit={handleSubmit}>
-                <Col span={24}>
-                  <Input
-                    type="url"
-                    name="url"
-                    placeholder={t("Cole aqui")}
-                    value={values.url || ""}
-                    onChange={handleChange}
-                  />
-                  <Button width="490px" name="submit">{t("Reduzir")}</Button>
-                  <ValidationType type="url" />
-                </Col>                
-              </FormGroup>
-            </ContentWrapper>
-          </Col>
-          <Col lg={11} md={11} sm={12} xs={24}>
-            <SpinCustom spinning={isLoading}>
-              {
-                responseApi.url ?
-                <>
-                  <Result
-                    status="success"
-                    title={t("Reduzido com sucesso")}
-                    extra={[
-                      <Link key={1} target={"_blank"} href={responseApi.url || "#"}>
-                        {responseApi.url || ""}
-                      </Link>,
-                      <span key={2} />,
-                      <ButtonSmall key={3} onClick={handleCopyClick}>{t("Copy")}</ButtonSmall>
-                    ]}
-                  />
-                </>
-                :
-                <SvgIcon src={icon} width="100%" height="100%" />
-              }
-            </SpinCustom>
-          </Col>
-        </Row>
-      </Fade>
+      <Row justify="space-between" align="middle" id={id}>
+        <Col lg={11} md={11} sm={11} xs={24}>
+          <ContentWrapper>
+            <h2>{t(title)}</h2>
+            <FormGroup 
+                autoComplete="off"
+                onSubmit={handleSubmit}>
+              <Col span={24}>
+                <Input
+                  type="url"
+                  name="url"
+                  placeholder={t("Cole aqui")}
+                  value={values.url || ""}
+                  onChange={handleChange}
+                />
+                <Button width="490px" name="submit">{t("Reduzir")}</Button>
+                <ValidationType type="url" />
+              </Col>                
+            </FormGroup>
+          </ContentWrapper>
+        </Col>
+        <Col lg={11} md={11} sm={12} xs={24}>
+          <SpinCustom spinning={isLoading}>
+            {
+              responseApi.url ?
+              <>
+                <Result
+                  status="success"
+                  title={t("Reduzido com sucesso")}
+                  extra={[
+                    <Link key={1} target={"_blank"} href={responseApi.url || "#"}>
+                      {responseApi.url || ""}
+                    </Link>,
+                    <span key={2} />,
+                    <ButtonSmall key={3} onClick={handleCopyClick}>{t("Copy")}</ButtonSmall>
+                  ]}
+                />
+              </>
+              :
+              <SvgIcon src={icon} width="100%" height="100%" />
+            }
+          </SpinCustom>
+        </Col>
+      </Row>
     </RightBlockContainer>
   );
 };
