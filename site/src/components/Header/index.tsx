@@ -25,6 +25,11 @@ const Header = ({ t }: any) => {
 
   const handleChange = (language: string) => {
     i18n.changeLanguage(language);
+    
+    // Atualizar URL com o parâmetro lang
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', language);
+    window.history.pushState({}, '', url.toString());
   };
 
   const showDrawer = () => {
