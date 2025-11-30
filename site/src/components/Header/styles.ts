@@ -24,12 +24,17 @@ export const CustomNavLink = styled("div")`
   width: 203px;
   display: inline-block;
 
+  @media only screen and (max-width: 890px) {
+    width: 100%;
+    display: block;
+  }
+
   @media only screen and (max-width: 411px) {
-    width: 150px;
+    width: 100%;
   }
 
   @media only screen and (max-width: 320px) {
-    width: 118px;
+    width: 100%;
   }
 `;
 
@@ -50,7 +55,7 @@ export const Burger = styled("div")`
   display: none;
 
   svg {
-    fill: #2e186a;
+    fill: var(--text-secondary);
   }
 `;
 
@@ -68,7 +73,7 @@ export const Menu = styled("h5")`
 
 export const CustomNavLinkSmall = styled(NavLink)`
   font-size: 1.2rem;
-  color: #18216d;
+  color: var(--text-primary);
   transition: color 0.2s ease-in;
   margin: 0.5rem 2rem;
 
@@ -97,16 +102,16 @@ export const Span = styled("span")`
   &:hover,
   &:active,
   &:focus {
-    color: rgb(255, 130, 92);
+    color: var(--bg-primary);
     text-underline-position: under;
-    text-decoration: rgb(255, 130, 92) wavy underline;
+    text-decoration: var(--bg-primary) wavy underline;
   }
 `;
 
 export const Language = styled("h4")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #18216d;
+  color: var(--text-primary);
 
   @media screen and (max-width: 414px) {
     padding: 1.5rem 0;
@@ -130,4 +135,28 @@ export const LanguageSwitch = styled("div")<any>`
 export const LanguageSwitchContainer = styled("div")`
   display: flex;
   justify-content: space-evenly;
+`;
+
+export const ThemeToggle = styled("button")`
+  background: transparent;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--shadow-color);
+  }
+
+  @media only screen and (max-width: 890px) {
+    margin: 10px auto;
+  }
 `;

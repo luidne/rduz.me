@@ -38,7 +38,7 @@ const Footer = ({ t }: any) => {
           <Row
             justify="space-between"
             align="middle"
-            style={{ paddingTop: "3rem" }}
+            style={{ paddingTop: "1rem" }}
           >
             <NavLink to="/">
               <LogoContainer>

@@ -2,23 +2,29 @@ import { createGlobalStyle } from "styled-components";
 
 export const Styles = createGlobalStyle`
 
-    @font-face {
-        font-family: "Motiva Sans Light";
-        src: url("/fonts/Motiva-Sans-Light.ttf") format("truetype");
-        font-style: normal;
+    :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f1f2f3;
+        --text-primary: #18216d;
+        --text-secondary: #2e186a;
+        --border-color: #6b6bff;
+        --shadow-color: rgba(46, 24, 106, 0.1);
     }
 
-    @font-face {
-        font-family: "Motiva Sans Bold";
-        src: url("/fonts/Motiva-Sans-Bold.ttf") format("truetype");
-        font-style: normal;
+    [data-theme='dark'] {
+        --bg-primary: #000000;
+        --bg-secondary: #2d2d2d;
+        --text-primary: #e0e0e0;
+        --text-secondary: #b8b8ff;
+        --border-color: #f1f2f3;
+        --shadow-color: rgba(107, 107, 255, 0.2);
     }
-
 
     body,
     html,
     a {
-        font-family: 'Motiva Sans Light', sans-serif;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 400;
     }
 
 
@@ -27,27 +33,30 @@ export const Styles = createGlobalStyle`
         padding:0;
         border: 0;
         outline: 0;
-        background: #fff;
+        background: var(--bg-primary);
+        color: var(--text-primary);
         overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     a:hover {
-        color: #18216d;
+        color: var(--text-primary);
     }
 
     input,
     textarea {
         border-radius: 4px;
         border: 0;
-        background: rgb(241, 242, 243);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
         transition: all 0.3s ease-in-out;  
         outline: none;
         width: 100%;  
         padding: 1rem 1.25rem;
 
         :focus-within {
-            background: none;
-            box-shadow: #2e186a 0px 0px 0px 1px;
+            background: var(--bg-primary);
+            box-shadow: var(--border-color) 0px 0px 0px 1px;
         }
     }
 
@@ -57,8 +66,9 @@ export const Styles = createGlobalStyle`
     h4,
     h5,
     h6 {
-        font-family: 'Motiva Sans Bold', serif;
-        color: #18216d;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
+        color: var(--text-primary);
         line-height: 1.18;
     }
 
@@ -77,6 +87,7 @@ export const Styles = createGlobalStyle`
 
     h2 {
         font-size: 48px;
+        letter-spacing: -3px;
 
         @media only screen and (max-width: 890px) {
           font-size: 40px;
@@ -89,6 +100,7 @@ export const Styles = createGlobalStyle`
 
     h3 {
         font-size: 40px;
+        letter-spacing: -3px;
 
         @media only screen and (max-width: 890px) {
           font-size: 34px;
@@ -101,6 +113,7 @@ export const Styles = createGlobalStyle`
 
     h4 {
         font-size: 32px;
+        letter-spacing: -3px;
 
         @media only screen and (max-width: 890px) {
           font-size: 28px;
@@ -136,7 +149,7 @@ export const Styles = createGlobalStyle`
     }
 
     p {
-        color: #18216d;
+        color: var(--text-primary);
         font-size: 21px;        
         line-height: 1.41;
     }
@@ -144,10 +157,10 @@ export const Styles = createGlobalStyle`
     a {
         text-decoration: none;
         outline: none;
-        color: #2E186A;
+        color: var(--text-secondary);
 
         :hover {
-            color: #2e186a;
+            color: var(--text-secondary);
         }
     }
     
@@ -164,9 +177,20 @@ export const Styles = createGlobalStyle`
         flex-direction: column;
         text-align: left;
         padding-top: 1.5rem;
+        background: var(--bg-primary);
+        color: var(--text-primary);
     }
 
     .ant-drawer-content-wrapper {
         width: 300px !important;
+    }
+
+    .ant-drawer-content {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+    }
+
+    .ant-drawer-mask {
+        background: rgba(0, 0, 0, 0.45);
     }
 `;

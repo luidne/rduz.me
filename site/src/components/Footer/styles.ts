@@ -2,14 +2,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const FooterSection = styled("footer")`
-  background: rgb(241, 242, 243);
+  background: var(--bg-primary);
   padding: 2.5rem 0;
+  transition: background-color 0.3s ease;
 `;
 
 export const Title = styled("h4")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #18216d;
+  color: var(--text-primary);
 
   @media screen and (max-width: 414px) {
     padding: 1.5rem 0;
@@ -19,7 +20,6 @@ export const Title = styled("h4")`
 export const NavLink = styled(Link)`
   display: block;
   font-size: 1rem;
-  margin-bottom: 0.625rem;
   transition: all 0.2s ease-in-out;
 
   &:hover,
@@ -30,12 +30,12 @@ export const NavLink = styled(Link)`
 `;
 
 export const Extra = styled("section")`
-  background: rgb(241, 242, 243);
+  background: var(--bg-primary);
   position: relative;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  padding-bottom: 2rem;
+  transition: background-color 0.3s ease;
 `;
 
 export const LogoContainer = styled("div")`
@@ -44,14 +44,14 @@ export const LogoContainer = styled("div")`
 `;
 
 export const Para = styled("div")`
-  color: #18216d;
+  color: var(--text-primary);
   font-size: 14px;
   width: 70%;
 `;
 
 export const Large = styled(Link)<any>`
   font-size: 16px;
-  color: #000;
+  color: var(--text-primary);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-transform: capitalize;
@@ -69,9 +69,9 @@ export const Large = styled(Link)<any>`
 `;
 
 export const Chat = styled("p")`
-  color: #18216d;
+  color: var(--text-primary);
   max-width: fit-content;
-  border-bottom: 1px solid #18216d;
+  border-bottom: 1px solid var(--text-primary);
   cursor: pointer;
   margin-top: 1rem;
   transition: all 0.3s ease-in-out;
@@ -97,6 +97,11 @@ export const FooterContainer = styled("div")`
   transition: all 0.1s ease-in-out;
 
   a {
+    img {
+      filter: invert(12%) sepia(45%) saturate(2700%) hue-rotate(218deg) brightness(95%) contrast(92%);
+      transition: filter 0.3s ease;
+    }
+
     &:hover,
     &:active,
     &:focus {
@@ -104,6 +109,10 @@ export const FooterContainer = styled("div")`
       -ms-transform: scale(1.1);
       transform: scale(1.1);
     }
+  }
+
+  [data-theme='dark'] & a img {
+    filter: invert(100%) brightness(100%);
   }
 
   @media screen and (max-width: 769px) {
@@ -120,16 +129,25 @@ export const FooterContainer = styled("div")`
     width: 25px;
     height: 25px;
 
-    &:hover {
-      fill: rgb(255, 130, 92);
+    img {
+      filter: invert(12%) sepia(45%) saturate(2700%) hue-rotate(218deg) brightness(95%) contrast(92%);
+      transition: filter 0.3s ease;
     }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  [data-theme='dark'] & div img {
+    filter: invert(100%) brightness(100%);
   }
 `;
 
 export const Language = styled("h4")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #18216d;
+  color: var(--text-primary);
 
   @media screen and (max-width: 414px) {
     padding: 1.5rem 0;
@@ -139,7 +157,7 @@ export const Language = styled("h4")`
 export const Label = styled("label")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #18216d;
+  color: var(--text-primary);
   display: block;
   margin-bottom: 2rem;
   font-family: "Motiva Sans Bold", serif;

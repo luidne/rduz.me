@@ -77,7 +77,7 @@ const RightBlock = ({
                   value={values.url || ""}
                   onChange={handleChange}
                 />
-                <Button width="490px" name="submit">{t("Reduzir")}</Button>
+                <Button width="100%" name="submit">{t("Reduzir")}</Button>
                 <ValidationType type="url" />
               </Col>                
             </FormGroup>

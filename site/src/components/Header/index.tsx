@@ -4,6 +4,7 @@ import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
 import i18n from "i18next";
+import { useTheme } from "../../contexts/ThemeContext";
 import {
   HeaderSection,
   LogoContainer,
@@ -16,12 +17,14 @@ import {
   LanguageSwitchContainer,
   CustomNavLinkSmall,
   Span,
-  CustomNavLink
+  CustomNavLink,
+  ThemeToggle
 } from "./styles";
 import { Button } from "../../common/Button";
 
 const Header = ({ t }: any) => {
   const [visible, setVisibility] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const handleChange = (language: string) => {
     i18n.changeLanguage(language);
@@ -44,10 +47,13 @@ const Header = ({ t }: any) => {
     return (
       <>
         <CustomNavLink onClick={() => window.location.href = '/visits'}>
-          <Span>
-            <Button>{t('Contador de Visitas')}</Button>
-          </Span>
+          <Button width="100%">{t('Contador de Visitas')}</Button>
         </CustomNavLink>
+        <CustomNavLinkSmall>
+            <ThemeToggle onClick={toggleTheme} title={theme === 'light' ? 'Modo Escuro' : 'Modo Claro'}>
+              {theme === 'light' ? '🌙' : '☀️'}
+            </ThemeToggle>
+        </CustomNavLinkSmall>
         <CustomNavLinkSmall>
           <LanguageSwitchContainer>    
             <LanguageSwitch onClick={() => handleChange("pt")}>
