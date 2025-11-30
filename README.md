@@ -27,6 +27,8 @@ Feita a compilação o React App agora ficará integrado ao Firebase Hosting e t
 
  - Local: ```$ firebase emulators:start```
  - Produção: ```# firebase deploy```
+   - Somente site: ```# firebase deploy --only hosting:site```
+   - Somente api: ```# firebase deploy --only functions:api```
 
 
 > Criar **.env** com as a seguintes variáveis:
